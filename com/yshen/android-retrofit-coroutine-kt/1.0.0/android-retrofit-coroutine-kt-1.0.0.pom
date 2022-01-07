@@ -14,9 +14,9 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>android-request-coroutine-kt</groupId>
+      <groupId>com.yshen</groupId>
       <artifactId>android-request-coroutine-kt</artifactId>
-      <version>unspecified</version>
+      <version>1.0.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
