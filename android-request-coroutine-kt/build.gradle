@@ -31,3 +31,14 @@ android {
 dependencies {
     implementation 'org.koin:koin-androidx-viewmodel:2.0.1'
 }
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            pom.groupId = POM_GROUP_ID
+            pom.artifactId = POM_ARTIFACT_ID
+            pom.version = POM_VERSION
+            repository(url: "file://${file(getProperty('POM_URL')).absolutePath}")
+        }
+    }
+}
