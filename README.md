@@ -5,39 +5,39 @@
 root project build.gradle
 
 ```
-	allprojects {  
-		repositories {  
+allprojects {  
+	repositories {  
 			maven { url "https://raw.githubusercontent.com/ManitoY/android-request-coroutine-kt/main"}  
-		}  
 	}  
+}  
 ```
 Retrofit requires at minimum Java 8+ or Android API 21+.
 
 ```
-	implementation 'com.yshen:android-request-coroutine-kt:1.0.0'
-	implementation 'com.yshen:android-retrofit-coroutine-kt:1.0.1'
+implementation 'com.yshen:android-request-coroutine-kt:1.0.0'
+implementation 'com.yshen:android-retrofit-coroutine-kt:1.0.1'
 ```
 ##### Retrofit Setup
 
 ```
-	class App : Application() {
-    	override fun onCreate() {
-        	super.onCreate()
-        	startKoin {
-            	androidLogger(Level.INFO)
-            	androidContext(this@App)
-            	modules(request {
-                	CoroutineRetrofit {
-                    	RetrofitBuilder {
-                        	Retrofit.Builder()
-                            	.client(it
-                                	.sslSocketFactory(SSLSocketClient.getSSLSocketFactory())
-                                	.hostnameVerifier(SSLSocketClient.getHostnameVerifier())
-                                	.connectTimeout(30, TimeUnit.SECONDS)
-                                	.readTimeout(30, TimeUnit.SECONDS)
-                                	.writeTimeout(30, TimeUnit.SECONDS)
-                                	.build())
-                            	.baseUrl("https://run.mocky.io/v3/")
+class App : Application() {
+	override fun onCreate() {
+		super.onCreate()
+		startKoin {
+			androidLogger(Level.INFO)
+			androidContext(this@App)
+			modules(request {
+				CoroutineRetrofit {
+					RetrofitBuilder {
+						Retrofit.Builder()
+								.client(it
+								.sslSocketFactory(SSLSocketClient.getSSLSocketFactory())
+								.hostnameVerifier(SSLSocketClient.getHostnameVerifier())
+								.connectTimeout(30, TimeUnit.SECONDS)
+								.readTimeout(30, TimeUnit.SECONDS)
+								.writeTimeout(30, TimeUnit.SECONDS)
+								.build())
+							.baseUrl("https://run.mocky.io/v3/")
                     }
                 }
             })
