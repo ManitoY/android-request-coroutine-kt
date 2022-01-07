@@ -33,10 +33,11 @@ android {
 
 dependencies {
     if(DEVELOPMENT.toBoolean()) {
+        implementation project(path: ':android-request-coroutine-kt')
         implementation project(path: ':android-retrofit-coroutine-kt')
     } else {
         implementation 'com.yshen:android-request-coroutine-kt:1.0.0'
-        implementation 'com.yshen:android-retrofit-coroutine-kt:1.0.0'
+        implementation 'com.yshen:android-retrofit-coroutine-kt:1.0.1'
     }
     implementation 'androidx.core:core-ktx:1.6.0'
     implementation 'androidx.appcompat:appcompat:1.2.0'

@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        viewModelScope?.launch {
+        GlobalScope.launch {
             http.get(Model::class.java, "4f64eb8d-050f-4ba3-983a-f0686aed8d28", Query("1"), error = {
                 Log.e("test", it.toString())
                 null
