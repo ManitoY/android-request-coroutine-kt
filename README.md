@@ -1,5 +1,5 @@
 # android-request-coroutine-kt
-### 基于基于Kotlin协程统一封装的网络请求
+### 基于Kotlin协程统一封装的网络请求
 #### Retrofit
 ##### Download
 root project build.gradle
