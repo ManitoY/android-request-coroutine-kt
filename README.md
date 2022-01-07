@@ -30,14 +30,14 @@ class App : Application() {
 				CoroutineRetrofit {
 					RetrofitBuilder {
 						Retrofit.Builder()
-								.client(it
-								.sslSocketFactory(SSLSocketClient.getSSLSocketFactory())
-								.hostnameVerifier(SSLSocketClient.getHostnameVerifier())
-								.connectTimeout(30, TimeUnit.SECONDS)
-								.readTimeout(30, TimeUnit.SECONDS)
-								.writeTimeout(30, TimeUnit.SECONDS)
-								.build())
-							.baseUrl("https://run.mocky.io/v3/")
+							.client(it
+							.sslSocketFactory(SSLSocketClient.getSSLSocketFactory())
+							.hostnameVerifier(SSLSocketClient.getHostnameVerifier())
+							.connectTimeout(30, TimeUnit.SECONDS)
+							.readTimeout(30, TimeUnit.SECONDS)
+							.writeTimeout(30, TimeUnit.SECONDS)
+							.build())
+						.baseUrl("https://run.mocky.io/v3/")
                     }
                 }
             })
@@ -54,14 +54,14 @@ class MainActivity : AppCompatActivity() {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main)
 		GlobalScope.launch {
-            http.get(Model::class.java, "4f64eb8d-050f-4ba3-983a-f0686aed8d28", Query("1"), error = {
-                Log.e("test", it.toString())
-                null
-            }) {
-                Log.e("test", it.Test ?: "error")
-                null
-            }
-        }
+            		http.get(Model::class.java, "4f64eb8d-050f-4ba3-983a-f0686aed8d28", Query("1"), error = {
+                	Log.e("test", it.toString())
+                	null
+            		}) {
+                		Log.e("test", it.Test ?: "error")
+                		null
+            		}
+        	}
 	}
 }
         
