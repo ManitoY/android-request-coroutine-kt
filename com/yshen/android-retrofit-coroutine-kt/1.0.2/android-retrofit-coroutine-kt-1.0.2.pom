@@ -8,7 +8,7 @@
   <packaging>aar</packaging>
   <dependencies>
     <dependency>
-      <groupId>android-request-coroutine-kt</groupId>
+      <groupId>com.yshen</groupId>
       <artifactId>android-request-coroutine-kt</artifactId>
       <version>1.0.1</version>
       <scope>compile</scope>
