@@ -31,15 +31,22 @@ class App : Application() {
          modules(request {
             CoroutineRetrofit {
                RetrofitBuilder {
+                  val sslSocketFactory = SSLSocketClient.getSSLSocketFactory()
+                  val trustManager = SSLTrustManager.getTrustManager(sslSocketFactory)
+                  checkNotNull(trustManager) {
+                     ("Unable to extract the trust manager on "
+                            + Platform.get()
+                            + ", sslSocketFactory is "
+                            + sslSocketFactory.javaClass)
+                  }
                   Retrofit.Builder()
                      .client(it
-                     .sslSocketFactory(SSLSocketClient.getSSLSocketFactory())
-                     .hostnameVerifier(SSLSocketClient.getHostnameVerifier())
-                     .connectTimeout(30, TimeUnit.SECONDS)
-                     .readTimeout(30, TimeUnit.SECONDS)
-                     .writeTimeout(30, TimeUnit.SECONDS)
-                     .build())
-                  .baseUrl("https://run.mocky.io/v3/")
+                         .sslSocketFactory(sslSocketFactory, trustManager)
+                         .hostnameVerifier(SSLSocketClient.getHostnameVerifier())
+                         .connectTimeout(30, TimeUnit.SECONDS)
+                         .readTimeout(30, TimeUnit.SECONDS)
+                         .writeTimeout(30, TimeUnit.SECONDS).build())
+                     .baseUrl("https://run.mocky.io/v3/")
                }
             }
          })
