@@ -14,9 +14,9 @@ allprojects {
 Retrofit requires at minimum Java 8+ or Android API 21+.
 
 ```
-implementation 'com.yshen:android-request-coroutine-kt:1.0.0'
 implementation 'com.yshen:android-retrofit-coroutine-kt:1.0.1'
 ```
+
 ##### Retrofit Setup
 
 ```
@@ -45,6 +45,7 @@ class App : Application() {
    }
 }
 ```
+
 ##### Request Apply
 
 ```
