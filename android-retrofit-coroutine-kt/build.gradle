@@ -29,11 +29,7 @@ android {
 }
 
 dependencies {
-    if(DEVELOPMENT.toBoolean()) {
-        api project(path: ':android-request-coroutine-kt')
-    } else {
-        api 'com.yshen:android-request-coroutine-kt:1.0.0'
-    }
+    api project(path: ':android-request-coroutine-kt')
     api 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1'
     api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1'
     api 'com.squareup.retrofit2:retrofit:2.9.0'

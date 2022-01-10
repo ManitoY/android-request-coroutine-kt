@@ -2,6 +2,7 @@
 ### 基于Kotlin协程统一封装的网络请求
 #### Retrofit
 ##### Download
+
 root project build.gradle
 
 ```
@@ -11,6 +12,7 @@ allprojects {
    }  
 }  
 ```
+
 Retrofit requires at minimum Java 8+ or Android API 21+.
 
 ```
@@ -58,14 +60,13 @@ class MainActivity : AppCompatActivity() {
       GlobalScope.launch {
          http.get(Model::class.java, "4f64eb8d-050f-4ba3-983a-f0686aed8d28", Query("1"), error = {
             Log.e("test", it.toString())
-            null
          }) {
             Log.e("test", it.Test ?: "error")
-            null
          }
       }
    }
 }
         
 ```
+
 Class Query is request body and Class Model is response entity.

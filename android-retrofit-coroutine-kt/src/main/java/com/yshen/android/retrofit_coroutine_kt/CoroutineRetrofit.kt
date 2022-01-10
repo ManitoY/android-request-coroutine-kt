@@ -22,8 +22,8 @@ class CoroutineRetrofit(val config: () -> RetrofitBuilder): Request {
         tClass: Class<T>,
         path: String?,
         params: P?,
-        error: (e: Throwable) -> Unit?,
-        response: (T) -> Unit?
+        error: (e: Throwable) -> Any?,
+        response: (T) -> Any?
     ) {
         if(params == null) config().retrofit?.create(Api::class.java)?.get(path) else {
             config().retrofit?.create(Api::class.java)?.get(path, params)
@@ -38,8 +38,8 @@ class CoroutineRetrofit(val config: () -> RetrofitBuilder): Request {
         tClass: Class<T>,
         path: String?,
         params: P?,
-        error: (e: Throwable) -> Unit?,
-        response: (T) -> Unit?
+        error: (e: Throwable) -> Any?,
+        response: (T) -> Any?
     ) {
         if(params == null) config().retrofit?.create(Api::class.java)?.post(path) else {
             config().retrofit?.create(Api::class.java)?.post(path, params)

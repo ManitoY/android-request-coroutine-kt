@@ -5,6 +5,8 @@ import com.readystatesoftware.chuck.ChuckInterceptor
 import com.yshen.android.retrofit_coroutine_kt.CoroutineRetrofit
 import com.yshen.android.retrofit_coroutine_kt.RetrofitBuilder
 import com.yshen.android.retrofit_coroutine_kt.extensions.ssl.SSLSocketClient
+import com.yshen.android.retrofit_coroutine_kt.extensions.ssl.SSLTrustManager
+import okhttp3.internal.platform.Platform
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -25,10 +27,18 @@ class App : Application() {
             modules(request {
                 CoroutineRetrofit {
                     RetrofitBuilder {
+                        val sslSocketFactory = SSLSocketClient.getSSLSocketFactory()
+                        val trustManager = SSLTrustManager.getTrustManager(sslSocketFactory)
+                        checkNotNull(trustManager) {
+                            ("Unable to extract the trust manager on "
+                                    + Platform.get()
+                                    + ", sslSocketFactory is "
+                                    + sslSocketFactory.javaClass)
+                        }
                         Retrofit.Builder()
                             .client(it
                                 .addInterceptor(ChuckInterceptor(applicationContext))
-                                .sslSocketFactory(SSLSocketClient.getSSLSocketFactory())
+                                .sslSocketFactory(sslSocketFactory, trustManager)
                                 .hostnameVerifier(SSLSocketClient.getHostnameVerifier())
                                 .connectTimeout(30, TimeUnit.SECONDS)
                                 .readTimeout(30, TimeUnit.SECONDS)
