@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.yshen</groupId>
   <artifactId>android-retrofit-coroutine-kt</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
   <packaging>aar</packaging>
   <dependencies>
     <dependency>
