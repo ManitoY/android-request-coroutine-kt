@@ -1,6 +1,7 @@
 package com.yshen.android.retrofit_coroutine_kt.extensions.ssl
 
 import android.annotation.SuppressLint
+import okhttp3.internal.platform.Platform
 import java.lang.AssertionError
 import javax.net.ssl.SSLSocketFactory
 import javax.net.ssl.X509TrustManager
@@ -12,8 +13,15 @@ import javax.net.ssl.X509TrustManager
 class SSLTrustManager {
     companion object {
         @JvmStatic
-        fun getTrustManager(sslSocketFactory: SSLSocketFactory?): X509TrustManager? {
-            return trustManager(sslSocketFactory)
+        fun getTrustManager(sslSocketFactory: SSLSocketFactory): X509TrustManager {
+            val trustManager = trustManager(sslSocketFactory)
+            checkNotNull(trustManager) {
+                ("Unable to extract the trust manager on "
+                        + Platform.get()
+                        + ", sslSocketFactory is "
+                        + sslSocketFactory.javaClass)
+            }
+            return trustManager
         }
 
         @SuppressLint("PrivateApi")
